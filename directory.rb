@@ -43,6 +43,16 @@ def print(students)
   end
 end
 
+def print_begins_with(students)
+  puts "Print student names beginning with which letter?"
+  first_character = gets.chomp.downcase
+  students.each do |student|
+    if student[:name][0].downcase == first_character
+      puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    end
+  end
+end
+
 def print_footer(names)
   puts "Overall, we have #{names.count} great students"
 end
@@ -51,4 +61,5 @@ end
 students = input_students
 print_header
 print(students)
+#print_begins_with(students)
 print_footer(students)
