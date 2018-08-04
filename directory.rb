@@ -1,17 +1,17 @@
 # Let's put all students into an array
-# students = [
-#   {name: "Dr. Hannibal Lecter", cohort: :november},
-#   {name: "Darth Vader", cohort: :november},
-#   {name: "Nurse Ratched", cohort: :november},
-#   {name: "Michael Corleone", cohort: :november},
-#   {name: "Alex DeLarge", cohort: :november},
-#   {name: "The Wicked Witch of the West", cohort: :november},
-#   {name: "Terminator", cohort: :november},
-#   {name: "Freddy Krueger", cohort: :november},
-#   {name: "The Joker", cohort: :november},
-#   {name: "Joffrey Baratheon", cohort: :november},
-#   {name: "Norman Bates", cohort: :november}
-# ]
+students = [
+  {name: "Dr. Hannibal Lecter", cohort: :november},
+  {name: "Darth Vader", cohort: :november},
+  {name: "Nurse Ratched", cohort: :november},
+  {name: "Michael Corleone", cohort: :november},
+  {name: "Alex DeLarge", cohort: :november},
+  {name: "The Wicked Witch of the West", cohort: :november},
+  {name: "Terminator", cohort: :november},
+  {name: "Freddy Krueger", cohort: :november},
+  {name: "The Joker", cohort: :november},
+  {name: "Joffrey Baratheon", cohort: :november},
+  {name: "Norman Bates", cohort: :november}
+]
 
 def input_students
   puts "Please enter the names of the students"
@@ -43,6 +43,14 @@ def print(students)
   end
 end
 
+def print_while(students)
+  count = 0
+  while count < students.length
+    puts "#{count + 1}. #{students[count][:name]} (#{students[count][:cohort]} cohort)"
+    count += 1
+  end
+end
+
 def print_begins_with(students)
   puts "Print student names beginning with which letter?"
   first_character = gets.chomp.downcase
@@ -53,13 +61,25 @@ def print_begins_with(students)
   end
 end
 
+def print_short_names(students)
+  max_length = 12
+  puts "Students with names shorter than length #{max_length}:"
+  students.each do |student|
+    if student[:name].length < max_length
+      puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    end
+  end
+end
+
 def print_footer(names)
   puts "Overall, we have #{names.count} great students"
 end
 
 # Nothing happens until we call the methods
-students = input_students
+#students = input_students
 print_header
-print(students)
+#print(students)
 #print_begins_with(students)
+print_while(students)
+#print_short_names(students)
 print_footer(students)
