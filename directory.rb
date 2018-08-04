@@ -47,8 +47,8 @@ def print_while(students)
   count = 0
   while count < students.length
     puts "#{count + 1}. #{students[count][:name]} (#{students[count][:cohort]} cohort)"
-    puts "Height: #{students[count][:height]}cm"
-    puts "Hobbies: #{students[count][:hobbies]}"
+    puts "Height: #{students[count][:height]}cm".center(60)
+    puts "Hobbies: #{students[count][:hobbies]}".center(60)
     count += 1
   end
 end
