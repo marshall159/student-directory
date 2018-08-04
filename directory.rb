@@ -1,16 +1,16 @@
 # Let's put all students into an array
 students = [
-  {name: "Dr. Hannibal Lecter", cohort: :november},
-  {name: "Darth Vader", cohort: :november},
-  {name: "Nurse Ratched", cohort: :november},
-  {name: "Michael Corleone", cohort: :november},
-  {name: "Alex DeLarge", cohort: :november},
-  {name: "The Wicked Witch of the West", cohort: :november},
-  {name: "Terminator", cohort: :november},
-  {name: "Freddy Krueger", cohort: :november},
-  {name: "The Joker", cohort: :november},
-  {name: "Joffrey Baratheon", cohort: :november},
-  {name: "Norman Bates", cohort: :november}
+  {name: "Dr. Hannibal Lecter", cohort: :november, hobbies: "Cooking", height: 180},
+  {name: "Darth Vader", cohort: :november, hobbies: "Fencing", height: 196},
+  {name: "Nurse Ratched", cohort: :november, hobbies: "First aid", height: 165},
+  {name: "Michael Corleone", cohort: :november, hobbies: "Eating", height: 169},
+  {name: "Alex DeLarge", cohort: :november, hobbies: "Painting", height: 175},
+  {name: "The Wicked Witch of the West", cohort: :november, hobbies: "Flying", height: 155},
+  {name: "Terminator", cohort: :november, hobbies: "Robotics", height: 195},
+  {name: "Freddy Krueger", cohort: :november, hobbies: "Sleeping", height: 200},
+  {name: "The Joker", cohort: :november, hobbies: "Reading", height: 185},
+  {name: "Joffrey Baratheon", cohort: :november, hobbies: "Wintering", height: 165},
+  {name: "Norman Bates", cohort: :november, hobbies: "Showering", height: 170}
 ]
 
 def input_students
@@ -47,6 +47,8 @@ def print_while(students)
   count = 0
   while count < students.length
     puts "#{count + 1}. #{students[count][:name]} (#{students[count][:cohort]} cohort)"
+    puts "Height: #{students[count][:height]}cm"
+    puts "Hobbies: #{students[count][:hobbies]}"
     count += 1
   end
 end
