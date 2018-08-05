@@ -1,17 +1,19 @@
+@students = [] # an empty array accessible to all methods
+
 # Let's put all students into an array
-students = [
-  {name: "Dr. Hannibal Lecter", cohort: :november, hobbies: "Cooking", height: 180},
-  {name: "Darth Vader", cohort: :november, hobbies: "Fencing", height: 196},
-  {name: "Nurse Ratched", cohort: :november, hobbies: "First aid", height: 165},
-  {name: "Michael Corleone", cohort: :november, hobbies: "Eating", height: 169},
-  {name: "Alex DeLarge", cohort: :november, hobbies: "Painting", height: 175},
-  {name: "The Wicked Witch of the West", cohort: :november, hobbies: "Flying", height: 155},
-  {name: "Terminator", cohort: :november, hobbies: "Robotics", height: 195},
-  {name: "Freddy Krueger", cohort: :november, hobbies: "Sleeping", height: 200},
-  {name: "The Joker", cohort: :november, hobbies: "Reading", height: 185},
-  {name: "Joffrey Baratheon", cohort: :november, hobbies: "Wintering", height: 165},
-  {name: "Norman Bates", cohort: :november, hobbies: "Showering", height: 170}
-]
+# students = [
+#   {name: "Dr. Hannibal Lecter", cohort: :november, hobbies: "Cooking", height: 180},
+#   {name: "Darth Vader", cohort: :november, hobbies: "Fencing", height: 196},
+#   {name: "Nurse Ratched", cohort: :november, hobbies: "First aid", height: 165},
+#   {name: "Michael Corleone", cohort: :november, hobbies: "Eating", height: 169},
+#   {name: "Alex DeLarge", cohort: :november, hobbies: "Painting", height: 175},
+#   {name: "The Wicked Witch of the West", cohort: :november, hobbies: "Flying", height: 155},
+#   {name: "Terminator", cohort: :november, hobbies: "Robotics", height: 195},
+#   {name: "Freddy Krueger", cohort: :november, hobbies: "Sleeping", height: 200},
+#   {name: "The Joker", cohort: :november, hobbies: "Reading", height: 185},
+#   {name: "Joffrey Baratheon", cohort: :november, hobbies: "Wintering", height: 165},
+#   {name: "Norman Bates", cohort: :november, hobbies: "Showering", height: 170}
+# ]
 
 # def input_students
 #   puts "Please enter the names of the students"
@@ -33,35 +35,42 @@ students = [
 # end
 
 def interactive_menu
-  students = []
   loop do
-    # 1. print the menu and ask the user what to do
-    puts "1. Input the students"
-    puts "2. Show the students"
-    puts "9. Exit" # 9 because we'll be adding more items
-    # 2. read the input and save it into a variable
-    selection = gets.chomp
-    # 3. do what the user has asked
-    case selection
-    when "1"
-      students = input_students
-    when "2"
-      print_header
-      print(students)
-      print_footer(students)
-    when "9"
-      exit # this will cause the program to terminate
-    else
-      puts "I don't know what you meant, try again"
-    end
+    print_menu
+    process(gets.chomp)
   end
+end
+
+def process(selection)
+  case selection
+    when "1"
+      input_students
+    when "2"
+      show_students
+    when "9"
+      exit
+    else
+      puts "I don't know what you mean, try again"
+  end
+end
+
+def print_menu
+  puts "1. Input the students"
+  puts "2. Show the students"
+  puts "9. Exit" # 9 because we'll be adding more items
+end
+
+def show_students
+  print_header
+  print
+  print_footer
 end
 
 def input_students
   puts "Please enter the names and cohorts of the students"
   puts "To finish, just type stop"
   # Create an empty array
-  students = []
+  #students = []
   completed = false
   while !completed
     puts "Enter name: "
@@ -74,12 +83,12 @@ def input_students
     name.empty? ? name = 'Default Name' : name
     cohort.empty? ? cohort = 'Reserved' : cohort
     # Add the student hash to the array
-    students << {name: name, cohort: cohort.to_sym}
-    puts "Now we have #{students.count} students"
+    @students << {name: name, cohort: cohort.to_sym}
+    puts "Now we have #{@students.count} students"
     # Get another name from the user
   end
   # Return the array of students
-  students
+  #students
 end
 
 def print_header
@@ -87,57 +96,57 @@ def print_header
   puts "-------------"
 end
 
-def print(students)
-  students.each_with_index do |student, i|
+def print
+  @students.each_with_index do |student, i|
     puts "#{i + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
   end
 end
 
-def group_by_cohort(students)
-  grouped = {}
-  students.each do |student|
-    if grouped[student[:cohort]] == nil
-      grouped[student[:cohort]] = []
-    end
-    grouped[student[:cohort]].push(student)
-  end
-  grouped.each do |cohort, students|
-    puts students
-  end
-end
+# def group_by_cohort(students)
+#   grouped = {}
+#   students.each do |student|
+#     if grouped[student[:cohort]] == nil
+#       grouped[student[:cohort]] = []
+#     end
+#     grouped[student[:cohort]].push(student)
+#   end
+#   grouped.each do |cohort, students|
+#     puts students
+#   end
+# end
 
-def print_while(students)
-  count = 0
-  while count < students.length
-    puts "#{count + 1}. #{students[count][:name]} (#{students[count][:cohort]} cohort)"
-    puts "Height: #{students[count][:height]}cm".center(60)
-    puts "Hobbies: #{students[count][:hobbies]}".center(60)
-    count += 1
-  end
-end
+# def print_while(students)
+#   count = 0
+#   while count < students.length
+#     puts "#{count + 1}. #{students[count][:name]} (#{students[count][:cohort]} cohort)"
+#     puts "Height: #{students[count][:height]}cm".center(60)
+#     puts "Hobbies: #{students[count][:hobbies]}".center(60)
+#     count += 1
+#   end
+# end
 
-def print_begins_with(students)
-  puts "Print student names beginning with which letter?"
-  first_character = gets.chomp.downcase
-  students.each do |student|
-    if student[:name][0].downcase == first_character
-      puts "#{student[:name]} (#{student[:cohort]} cohort)"
-    end
-  end
-end
+# def print_begins_with(students)
+#   puts "Print student names beginning with which letter?"
+#   first_character = gets.chomp.downcase
+#   students.each do |student|
+#     if student[:name][0].downcase == first_character
+#       puts "#{student[:name]} (#{student[:cohort]} cohort)"
+#     end
+#   end
+# end
 
-def print_short_names(students)
-  max_length = 12
-  puts "Students with names shorter than length #{max_length}:"
-  students.each do |student|
-    if student[:name].length < max_length
-      puts "#{student[:name]} (#{student[:cohort]} cohort)"
-    end
-  end
-end
+# def print_short_names(students)
+#   max_length = 12
+#   puts "Students with names shorter than length #{max_length}:"
+#   students.each do |student|
+#     if student[:name].length < max_length
+#       puts "#{student[:name]} (#{student[:cohort]} cohort)"
+#     end
+#   end
+# end
 
-def print_footer(names)
-  puts "Overall, we have #{names.count} great students"
+def print_footer
+  puts "Overall, we have #{@students.count} great students"
 end
 
 # Nothing happens until we call the methods
@@ -149,4 +158,4 @@ end
 #print_while(students)
 #print_short_names(students)
 #print_footer(students)
-interactive_menu
+#interactive_menu
