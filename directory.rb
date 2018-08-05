@@ -68,6 +68,19 @@ def print(students)
   end
 end
 
+def group_by_cohort(students)
+  grouped = {}
+  students.each do |student|
+    if grouped[student[:cohort]] == nil
+      grouped[student[:cohort]] = []
+    end
+    grouped[student[:cohort]].push(student)
+  end
+  grouped.each do |cohort, students|
+    puts students
+  end
+end
+
 def print_while(students)
   count = 0
   while count < students.length
@@ -105,7 +118,8 @@ end
 # Nothing happens until we call the methods
 #students = input_students
 print_header
-print(students)
+#print(students)
+group_by_cohort(students)
 #print_begins_with(students)
 #print_while(students)
 #print_short_names(students)
