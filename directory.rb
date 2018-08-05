@@ -13,20 +13,45 @@ students = [
   {name: "Norman Bates", cohort: :november, hobbies: "Showering", height: 170}
 ]
 
+# def input_students
+#   puts "Please enter the names of the students"
+#   puts "To finish, just hit return twice"
+#   # Create an empty array
+#   students = []
+#   # Get the first name
+#   name = gets.chomp
+#   # While the name is not empty, repeat this code
+#   while !name.empty? do
+#     # Add the student hash to the array
+#     students << {name: name, cohort: :november}
+#     puts "Now we have #{students.count} students"
+#     # Get another name from the user
+#     name = gets.chomp
+#   end
+#   # Return the array of students
+#   students
+# end
+
 def input_students
-  puts "Please enter the names of the students"
-  puts "To finish, just hit return twice"
+  puts "Please enter the names and cohorts of the students"
+  puts "To finish, just type stop"
   # Create an empty array
   students = []
-  # Get the first name
-  name = gets.chomp
-  # While the name is not empty, repeat this code
-  while !name.empty? do
+  completed = false
+  while !completed
+    puts "Enter name: "
+    name = gets.chomp
+    break if name.downcase == 'stop'
+    puts "Enter cohort: "
+    cohort = gets.chomp
+    break if cohort.downcase == 'stop'
+    # Default values
+    name.empty? ? name = 'Default Name' : name
+    cohort.empty? ? cohort = 'Reserved' : cohort
     # Add the student hash to the array
-    students << {name: name, cohort: :november}
+    students << {name: name, cohort: cohort.to_sym}
     puts "Now we have #{students.count} students"
     # Get another name from the user
-    name = gets.chomp
   end
   # Return the array of students
   students
@@ -80,8 +105,8 @@ end
 # Nothing happens until we call the methods
 #students = input_students
 print_header
-#print(students)
+print(students)
 #print_begins_with(students)
-print_while(students)
+#print_while(students)
 #print_short_names(students)
 print_footer(students)
